@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package nomes;
+
+service ServicoNomes {
+  rpc Bind (BindMsg) returns (StatusMsg) {}
+  rpc Unbind (NameMsg) returns (StatusMsg) {}
+  rpc Rebind (BindMsg) returns (StatusMsg) {}
+  rpc Lookup (NameMsg) returns (AddressMsg) {}
+}
+
+message AddressMsg {
+  string ipaddress = 1;
+  string portnumber = 2;
+}
+
+message BindMsg {
+  string name = 1;
+  AddressMsg address = 2;
+}
+
+message NameMsg {
+  string name = 1;
+}
+
+message StatusMsg {
+  string status = 1;
+}

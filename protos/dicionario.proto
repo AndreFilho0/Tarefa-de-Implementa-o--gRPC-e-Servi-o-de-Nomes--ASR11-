@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package dicionario;
+
+service Dicionario {
+  rpc Buscar (Palavra) returns (Definicao) {}
+  rpc Adicionar (Verbete) returns (Status) {}
+  rpc ListarPalavras (Vazio) returns (ListaPalavras) {}
+}
+
+message Vazio {}
+
+message Palavra {
+  string palavra = 1;
+}
+
+message Verbete {
+  string palavra = 1;
+  string definicao = 2;
+}
+
+message Definicao {
+  bool encontrada = 1;
+  string definicao = 2;
+}
+
+message ListaPalavras {
+  repeated string palavras = 1;
+}
+
+message Status {
+  bool sucesso = 1;
+  string mensagem = 2;
+}

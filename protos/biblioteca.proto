@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package biblioteca;
+
+service Biblioteca {
+  rpc CadastrarLivro (NovoLivro) returns (Livro) {}
+  rpc ListarLivros (Vazio) returns (ListaLivros) {}
+  rpc Emprestar (LivroId) returns (Status) {}
+  rpc Devolver (LivroId) returns (Status) {}
+}
+
+message Vazio {}
+
+message NovoLivro {
+  string titulo = 1;
+  string autor = 2;
+}
+
+message Livro {
+  int32 id = 1;
+  string titulo = 2;
+  string autor = 3;
+  bool disponivel = 4;
+}
+
+message ListaLivros {
+  repeated Livro livros = 1;
+}
+
+message LivroId {
+  int32 id = 1;
+}
+
+message Status {
+  bool sucesso = 1;
+  string mensagem = 2;
+}
